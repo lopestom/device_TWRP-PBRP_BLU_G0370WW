@@ -1,0 +1,1 @@
+# device_TWRP_BLU_G00WW
