@@ -29,7 +29,7 @@ Primary Camera |48 MP, f/1.8, (wide), 1/2.0", 0.8µm, PDAF + 8 MP, f/2.2, (ultra
 Video | 8.29 MP; 3840p, 2160p 4K video, 30fps
 Secondary Camera | 32 MP, f/2.0, (wide)
 Video | 2.07 MP; 1920p, 1080p video, 30fps
-Wireless | Quick | Fast charging - 10W (Qi) + 18W Ultra Quick Charger
+Wireless | Quick / Fast charging - 10W (Qi) + 18W Ultra Quick Charger
 Wifi | Yes, IEEE802.11 a/b/g/n, Supports 5G Wi-Fi Signal / Wi-Fi Direct / Wi-Fi Display
 Bluetooth | v4.1, A2DP, LE
 USB Type-C | Yes, 2.0, reversible connector
