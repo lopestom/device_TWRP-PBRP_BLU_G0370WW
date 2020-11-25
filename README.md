@@ -4,8 +4,7 @@ Releasing first file Readme about device in the 24/11/2020.
 Download file TWRPv3.4.0-0: soon
 
 ## About Device
-
-![BLU G90 Pro G0370WW](https://fdn2.gsmarena.com/vv/pics/blu/blu-g90-pro-3.jpg)![Premium gaming protective Case](https://i.imgur.com/ilyoMLzl.jpg)
+![BLU G90 Pro G0370WW](https://fdn2.gsmarena.com/vv/pics/blu/blu-g90-pro-3.jpg) ![Premium gaming protective Case](https://i.imgur.com/ilyoMLzl.jpg)
 
 ### Specifications
 
