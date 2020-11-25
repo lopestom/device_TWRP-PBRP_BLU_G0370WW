@@ -25,8 +25,7 @@ Weight | 215 g
 Display | 6.5" (103.7 cm2) - 19:9
 Screen resolution | 1080 x 2340 pixels, Full HD+ Infinity Display
 Pixel density | 396 PPI
-Primary Camera |48 MP, f/1.8, (wide), 1/2.0", 0.8µm, PDAF + 
-8 MP, f/2.2, (ultrawide) + 2 MP, f/2.2, (macro) + 2 MP, f/2.2, (depth); LED flash
+Primary Camera |48 MP, f/1.8, (wide), 1/2.0", 0.8µm, PDAF + 8 MP, f/2.2, (ultrawide) + 2 MP, f/2.2, (macro) + 2 MP, f/2.2, (depth); LED flash
 Video | 8.29 MP; 3840p, 2160p 4K video, 30fps
 Secondary Camera | 32 MP, f/2.0, (wide)
 Video | 2.07 MP; 1920p, 1080p video, 30fps
