@@ -35,8 +35,6 @@ Bluetooth | v4.1, A2DP, LE
 USB Type-C | Yes, 2.0, reversible connector
 NFC | No
 Network support | Both SIM slots are compatible with 4G/LTE
-GPRS | Available
-EDGE | Available
 SIM size | SIM1 - SIM2: Nano
 CARD slot |	microSD, up to 128 GB (microSDXC;microSDHC)
 SD slot |	SIM1 + SIM2 + microSD
@@ -47,6 +45,7 @@ Network | Bands
 2G | GSM 850 / 900 / 1800 / 1900 - SIM 1 & SIM 2
 3G | HSDPA B1 (2100), B2 (1900), B4 (1700 AWS), B5 (850), B8 (900)
 4G | LTE band 1 (2100), 2 (1900), 3 (1800), 4 (1700/2100 AWS 1), 5 (850), 7 (2600), 8 (900), 12 (700), 13 (700), 17 (700), 28 (700)
+VoLte | Yes
 Speed | HSPA 42.2/5.76 Mbps, LTE-A (2CA) Cat6 300/50 Mbps
 
 **This device tree can be used to build TWRP for BLU G90 Pro - G0370WW**
