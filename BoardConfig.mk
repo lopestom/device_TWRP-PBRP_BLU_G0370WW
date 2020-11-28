@@ -1,0 +1,163 @@
+#
+# Copyright (C) 2020 The Android Open Source Project
+# Copyright (C) 2020 The TWRP Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+DEVICE_PATH := device/blu/G0370WW
+
+# For building with minimal manifest
+ALLOW_MISSING_DEPENDENCIES := true
+
+# Architecture
+BOARD_HAS_MTK_HARDWARE := true
+MTK_HARDWARE := true
+TARGET_ARCH := arm64
+TARGET_ARCH_VARIANT := armv8-a
+TARGET_CPU_ABI := arm64-v8a
+TARGET_CPU_ABI2 :=
+TARGET_CPU_VARIANT := cortex-a53
+
+TARGET_2ND_ARCH := arm
+TARGET_2ND_ARCH_VARIANT := armv8-a
+TARGET_2ND_CPU_ABI := armeabi-v7a
+TARGET_2ND_CPU_ABI2 := armeabi
+TARGET_2ND_CPU_VARIANT := cortex-a53
+
+TARGET_CPU_ABI_LIST_64_BIT := $(TARGET_CPU_ABI)
+TARGET_CPU_ABI_LIST_32_BIT := $(TARGET_2ND_CPU_ABI),$(TARGET_2ND_CPU_ABI2)
+TARGET_CPU_ABI_LIST := $(TARGET_CPU_ABI_LIST_64_BIT),$(TARGET_CPU_ABI_LIST_32_BIT)
+TARGET_USES_64_BIT_BINDER := true
+ARCH_ARM_HAVE_TLS_REGISTER := true
+
+# Bootloader
+TARGET_BOOTLOADER_BOARD_NAME := k85v1_64_bsp
+TARGET_NO_BOOTLOADER := true
+
+# Platform
+TARGET_BOARD_PLATFORM := mt6785
+TARGET_BOARD_PLATFORM_GPU := mali-g76mc4
+
+# Kernel
+BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2 androidboot.boot_devices=bootdevice androidboot.selinux=permissive 
+BOARD_KERNEL_BASE := 0x40078000
+BOARD_KERNEL_OFFSET := 0x00008000
+BOARD_KERNEL_PAGESIZE := 2048
+BOARD_RAMDISK_OFFSET := 0x07c08000
+BOARD_KERNEL_TAGS_OFFSET := 0x0bc08000
+BOARD_BOOTIMG_HEADER_VERSION := 2
+TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/zImage
+TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img
+BOARD_MKBOOTIMG_ARGS += --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
+BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
+BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
+BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
+BOARD_KERNEL_IMAGE_NAME := zImage
+TARGET_KERNEL_ARCH := arm64
+TARGET_KERNEL_SOURCE := kernel/blu/G0370WW
+TARGET_KERNEL_CONFIG := G0370WW_defconfig
+
+# Ramdisk compression
+LZMA_RAMDISK_TARGETS := recovery
+
+# Hack: prevent anti rollback
+PLATFORM_SECURITY_PATCH := 2099-12-31
+PLATFORM_VERSION := 16.1.0
+
+# Partitions
+BOARD_FLASH_BLOCK_SIZE := 131072
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 33554432
+BOARD_BOOTIMAGE_PARTITION_SIZE := 33554432
+BOARD_CACHEIMAGE_PARTITION_SIZE := 452984832
+BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3758096384
+BOARD_SYSTEMIMAGE_PARTITION_TYPE := ext4
+#*BOARD_USERDATAIMAGE_PARTITION_SIZE := 855638016
+BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_VENDORIMAGE_PARTITION_SIZE := 514744320
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
+TARGET_USERIMAGES_USE_EXT4 := true
+TARGET_USERIMAGES_USE_F2FS := true
+
+
+# Dynamic Partition
+#*BOARD_SUPER_PARTITION_SIZE := 9126805504
+#*BOARD_SUPER_PARTITION_GROUPS := qti_dynamic_partitions
+#*BOARD_QTI_DYNAMIC_PARTITIONS_SIZE := 9126805504
+#*BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST := product vendor system
+
+# Workaround for error copying vendor files to recovery ramdisk
+TARGET_COPY_OUT_VENDOR := vendor
+
+# Recovery
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/recovery/root/etc/recovery.fstab
+BOARD_HAS_LARGE_FILESYSTEM := true
+RECOVERY_SDCARD_ON_DATA := true
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/mt_usb/musb-hdrc.0.auto/gadget/lun%d/file
+TARGET_RECOVERY_LCD_BACKLIGHT_PATH := \"/sys/class/leds/lcd-backlight/brightness\"
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+
+# Crypto
+TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_FBE := true
+
+# Storage
+TW_HAS_MTP := true
+TW_MTP_DEVICE := /dev/mtp_usb
+TW_INTERNAL_STORAGE_PATH := "/data/media"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
+TW_EXTERNAL_STORAGE_PATH := "/external_sd"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
+
+TW_DEFAULT_EXTERNAL_STORAGE := true
+TW_NO_USB_STORAGE := false
+
+# Avb
+BOARD_AVB_ENABLE := true
+BOARD_AVB_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
+
+# TWRP specific build flags
+TARGET_OTA_ASSERT_DEVICE := G0370WW
+TW_EXCLUDE_DEFAULT_USB_INIT := true
+TW_EXTRA_LANGUAGES := true
+TW_INCLUDE_NTFS_3G := true
+TW_USE_TOOLBOX := true
+TW_SKIP_COMPATIBILITY_CHECK := true
+TW_DEVICE_VERSION := -0 by lopestom
+TW_DEFAULT_DEVICE_NAME := G0370WW
+
+TW_INPUT_BLACKLIST := "hbtp_vm"
+TW_DEFAULT_LANGUAGE := en
+
+# Display
+TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
+TW_DEFAULT_BRIGHTNESS := 188
+TW_MAX_BRIGHTNESS := 255
+TW_NO_SCREEN_BLANK := true
+TW_NO_SCREEN_TIMEOUT := true
+TW_NO_BATT_PERCENT := false
+TW_SCREEN_BLANK_ON_BOOT := true
+
+# Resolution
+TW_THEME := portrait_hdpi
+DEVICE_SCREEN_WIDTH := 1080
+DEVICE_SCREEN_HEIGHT := 2340
+
+# Debug
+TWRP_INCLUDE_LOGCAT := true
+TARGET_USES_LOGD := true
+
+# Excludes
+TW_EXCLUDE_TWRPAPP := true

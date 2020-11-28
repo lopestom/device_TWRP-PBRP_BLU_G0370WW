@@ -1,0 +1,2 @@
+add_lunch_combo omni_G0370WW-userdebug
+add_lunch_combo omni_G0370WW-eng
