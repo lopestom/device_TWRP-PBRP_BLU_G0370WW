@@ -7,6 +7,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/embedded.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/treble_common_64.mk)
 
 # Inherit from G0370WW device
 $(call inherit-product, device/blu/G0370WW/device.mk)
@@ -24,11 +25,20 @@ PRODUCT_BRAND := BLU
 PRODUCT_MODEL := G90 PRO
 PRODUCT_MANUFACTURER := BLU
 PRODUCT_RELEASE_NAME := BLU G90 PRO
+PRODUCT_BOARD := k85v1_64_bsp
+
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    TARGET_DEVICE=G0370WW \
+    PRODUCT_NAME=G90_PRO \
+    PRIVATE_BUILD_DESC="full_k85v1_64-user 10 QP1A.190711.020 1594362725 release-keys"
+
+BUILD_FINGERPRINT := BLU/G90_PRO/G0370WW:10/QP1A.190711.020/1594362725:user/release-keys
+
 
 # HACK: Set vendor patch level and enable Treble
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.build.security_patch=2099-12-31 \
-    ro.treble.enabled=true
+    ro.treble.enabled=true \
     persist.sys.usb.config=mtp \
     persist.service.adb.enable=1 \
     persist.service.debuggable=1 \
