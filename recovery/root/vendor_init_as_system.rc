@@ -3,7 +3,7 @@ on post-fs-data
 
     # Start checkpoint before we touch data
     start vold
-    exec - system system -- /system/bin/vdc checkpoint prepareCheckpoint
+    exec - system system -- /bin/vdc checkpoint prepareCheckpoint
 
     # We chown/chmod /data again so because mount is run as root + defaults
     chown system system /data
@@ -21,7 +21,7 @@ on post-fs-data
 
     # Load fsverity keys. This needs to happen before apexd, as post-install of
     # APEXes may rely on keys.
-    exec -- /system/bin/fsverity_init
+    exec -- /bin/fsverity_init
 
     # Make sure that apexd is started in the default namespace
     enter_default_mount_ns
