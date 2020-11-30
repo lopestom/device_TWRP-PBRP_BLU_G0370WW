@@ -1,3 +1,6 @@
+#
+# Copyright (C) 2020 The Android Open Source Project
+#
 
 # Dynamic
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
@@ -9,12 +12,18 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/treble_common_64.mk)
 
+#Compiling PB Recovery
+#$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
+
 # Inherit from G0370WW device
 $(call inherit-product, device/blu/G0370WW/device.mk)
 
 # Inherit some common Omni stuff.
 $(call inherit-product, vendor/omni/config/common.mk)
 $(call inherit-product, vendor/omni/config/gsm.mk)
+
+#Compiling PB Recovery
+#$(call inherit-product, vendor/pb/config/common.mk)
 
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,$(LOCAL_PATH)/recovery/root,recovery/root)
 
@@ -33,7 +42,7 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     PRIVATE_BUILD_DESC="full_k85v1_64-user 10 QP1A.190711.020 1594362725 release-keys"
 
 BUILD_FINGERPRINT := BLU/G90_PRO/G0370WW:10/QP1A.190711.020/1594362725:user/release-keys
-
+PLATFORM_SECURITY_PATCH := 2099-12-31
 
 # HACK: Set vendor patch level and enable Treble
 PRODUCT_PROPERTY_OVERRIDES += \

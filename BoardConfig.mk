@@ -21,8 +21,6 @@ DEVICE_PATH := device/blu/G0370WW
 ALLOW_MISSING_DEPENDENCIES := true
 
 # Architecture
-BOARD_HAS_MTK_HARDWARE := true
-MTK_HARDWARE := true
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
@@ -39,6 +37,8 @@ TARGET_CPU_ABI_LIST_64_BIT := $(TARGET_CPU_ABI)
 TARGET_CPU_ABI_LIST_32_BIT := $(TARGET_2ND_CPU_ABI),$(TARGET_2ND_CPU_ABI2)
 TARGET_CPU_ABI_LIST := $(TARGET_CPU_ABI_LIST_64_BIT),$(TARGET_CPU_ABI_LIST_32_BIT)
 TARGET_USES_64_BIT_BINDER := true
+TARGET_BOARD_SUFFIX := _64
+TARGET_IS_64_BIT := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
 # Bootloader
@@ -49,8 +49,13 @@ TARGET_NO_BOOTLOADER := true
 TARGET_BOARD_PLATFORM := mt6785
 TARGET_BOARD_PLATFORM_GPU := mali-g76mc4
 
+# MTK Hardware
+BOARD_HAS_MTK_HARDWARE := true
+BOARD_USES_MTK_HARDWARE := true
+MTK_HARDWARE := true
+
 # Kernel
-BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2 androidboot.boot_devices=bootdevice androidboot.selinux=permissive 
+BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2 androidboot.selinux=permissive androidboot.boot_devices=bootdevice
 BOARD_KERNEL_BASE := 0x40078000
 BOARD_KERNEL_OFFSET := 0x00008000
 BOARD_KERNEL_PAGESIZE := 2048
@@ -65,15 +70,17 @@ BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
 BOARD_KERNEL_IMAGE_NAME := zImage
 TARGET_KERNEL_ARCH := arm64
+TARGET_KERNEL_HEADER_ARCH := arm64
 #TARGET_KERNEL_SOURCE := kernel/blu/G0370WW
 #TARGET_KERNEL_CONFIG := G0370WW_defconfig
 
 # Ramdisk compression
 LZMA_RAMDISK_TARGETS := recovery
 
-# Hack: prevent anti rollback
+# Hack: prevent anti rollback # required to mount /data/ because of version binding...
 PLATFORM_SECURITY_PATCH := 2099-12-31
 PLATFORM_VERSION := 16.1.0
+VENDOR_SECURITY_PATCH := 2099-12-31
 
 # system.prop
 TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
@@ -93,7 +100,7 @@ BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
-
+BOARD_ROOT_EXTRA_FOLDERS += metadata
 
 # Dynamic Partition
 BOARD_SUPER_PARTITION_SIZE := 3758096384
@@ -105,7 +112,7 @@ BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST := product vendor system
 TARGET_COPY_OUT_VENDOR := vendor
 
 # Recovery
-TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/recovery/root/etc/twrp.fstab
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/recovery/root/etc/recovery.fstab
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_SUPPRESS_SECURE_ERASE := true
@@ -119,10 +126,13 @@ TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 # Crypto
 TW_INCLUDE_CRYPTO := true
 #TW_INCLUDE_FBE := true
+TW_INCLUDE_CRYPTO_FBE := true
+TW_INCLUDE_FBE_METADATA_DECRYPT := false
+BOARD_USES_METADATA_PARTITION := true
 TW_CRYPTO_FS_TYPE := "ext4"
 TW_CRYPTO_REAL_BLKDEV := "/dev/block/platform/bootdevice/by-name/userdata"
 TW_CRYPTO_MNT_POINT := "/data"
-TW_CRYPTO_FS_OPTIONS := "noatime nosuid nodev noauto_da_alloc discard wait"
+TW_CRYPTO_FS_OPTIONS := "nosuid,nodev,noatime,discard,noauto_da_alloc,data=ordered"
 
 # Storage
 TW_HAS_MTP := true
@@ -131,7 +141,6 @@ TW_INTERNAL_STORAGE_PATH := "/data/media"
 TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
 TW_EXTERNAL_STORAGE_PATH := "/external_sd"
 TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
-
 TW_DEFAULT_EXTERNAL_STORAGE := true
 TW_NO_USB_STORAGE := false
 
@@ -150,6 +159,7 @@ TW_DEVICE_VERSION := -0 by lopestom
 TW_DEFAULT_DEVICE_NAME := G0370WW
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_DEFAULT_LANGUAGE := en
+TARGET_USES_MKE2FS := true
 
 # Display
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
