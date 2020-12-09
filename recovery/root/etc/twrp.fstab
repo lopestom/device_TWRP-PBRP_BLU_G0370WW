@@ -1,16 +1,25 @@
-#fstab file by lopestom for BLU G90 Pro_G0370WW_V10
+#fstab file by lopestom for BLU G90 Pro_G0370WW_V10.0.03.03_GENERIC 10-07-2020 14:37
 #
 # mount point    fstype  device                             device2                flags
 
 # Dynamic partition
-/system			ext4		/dev/block/dm-3
-/product        ext4		/dev/block/dm-5
-/vendor			ext4		/dev/block/dm-4
+/system			ext4		/dev/block/dm-3              flags=backup=1;display="System dm-3"
+/product        ext4		/dev/block/dm-5              flags=backup=1;display="Product dm-5"
+/vendor			ext4		/dev/block/dm-4              flags=backup=1;display="Vendor dm-4"
 
-/super_image     emmc    /dev/block/platform/bootdevice/by-name/super              flags=backup=1;display="Super";flashimg=1
+/system		    ext4	/dev/block/mapper/system      flags=backup=1;display="System ext4"
+/vendor             ext4        /dev/block/mapper/vendor      flags=backup=1;display="Vendor ext4"
+/product            ext4        /dev/block/mapper/product     flags=backup=1;display="Product ext4"
+/system_image	    emmc	/dev/block/mapper/system    flags=backup=1;display="System Image";flashimg=1
+/vendor_image	    emmc	/dev/block/mapper/vendor    flags=backup=1;display="Vendor Image";flashimg=1
+/product_image	    emmc	/dev/block/mapper/product   flags=backup=1;display="Product Image";flashimg=1
+
+/super          emmc    /dev/block/platform/bootdevice/by-name/super              flags=backup=1;display="Super_image";flashimg=1
 
 # Core Partitions
-/metadata             ext4    /dev/block/platform/bootdevice/by-name/md_udc
+#/metadata             ext4    /dev/block/platform/bootdevice/by-name/md_udc         flags=backup=1;display="metadata"
+/md_udc		    emmc	/dev/block/platform/bootdevice/by-name/md_udc   flags=backup=1
+/metadata	    emmc	/dev/block/platform/bootdevice/by-name/metadata flags=backup=1
 
 # Common partition
 /data            ext4    /dev/block/platform/bootdevice/by-name/userdata           flags=fileencryption=aes-256-cts
