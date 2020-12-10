@@ -1,5 +1,6 @@
 # TWRP Device Tree - BLU G90 Pro - G0370WW
 Releasing first file Readme about device in the 24/11/2020.
+09/12/2020 Tested PBRPv3 in the device and encryption/decryption working!
 
 Download file TWRPv3.4.0-0: soon
 
