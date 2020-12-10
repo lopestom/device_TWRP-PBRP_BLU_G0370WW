@@ -1,6 +1,7 @@
 # TWRP Device Tree - BLU G90 Pro - G0370WW
 Releasing first file Readme about device in the 24/11/2020.
- 05/12/2020 - First test with TWRP: flashed and starting. Fixing some info.
+
+05/12/2020 - First test with TWRP: flashed and starting. Fixing some info.
 
 Download file TWRPv3.4.0-0: soon
 
