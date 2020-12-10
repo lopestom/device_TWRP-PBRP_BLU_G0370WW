@@ -1,5 +1,6 @@
 # TWRP Device Tree - BLU G90 Pro - G0370WW
 Releasing first file Readme about device in the 24/11/2020.
+ 05/12/2020 - First test with TWRP: flashed and starting. Fixing some info.
 
 Download file TWRPv3.4.0-0: soon
 
@@ -22,7 +23,7 @@ Height | 162 mm
 Width | 77 mm
 Thickness | 10.1 mm
 Weight | 215 g
-Display | 6.5" (103.7 cm^2) - 19:9
+Display | 6.5" (103.7 cm²) - 19:9
 Screen resolution | 1080 x 2340 pixels, Full HD+ Infinity Display
 Pixel density | 396 PPI
 Primary Camera |48 MP, f/1.8, (wide), 1/2.0", 0.8µm, PDAF + 8 MP, f/2.2, (ultrawide) + 2 MP, f/2.2, (macro) + 2 MP, f/2.2, (depth); LED flash
