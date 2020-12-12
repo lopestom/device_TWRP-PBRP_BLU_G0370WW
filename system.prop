@@ -18,7 +18,5 @@ ro.odm.tee=2
 ro.odm.fingerprint=ft9362_tee
 ro.vendor.mediatek.platform=MT6785
 ro.vendor.mtk_microtrust_tee_support=1
-ro.boot.avb_version=1.1
-ro.boot.vbmeta.avb_version=1.1
 ro.treble.enabled=true
 ro.boot.dynamic_partitions=true
