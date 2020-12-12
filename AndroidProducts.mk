@@ -12,3 +12,6 @@
 
 PRODUCT_MAKEFILES := \
      $(LOCAL_DIR)/omni_G0370WW.mk
+
+
+COMMON_LUNCH_CHOICES := omni_G0370WW-eng
