@@ -20,3 +20,4 @@ ro.vendor.mediatek.platform=MT6785
 ro.vendor.mtk_microtrust_tee_support=1
 ro.treble.enabled=true
 ro.boot.dynamic_partitions=true
+#
