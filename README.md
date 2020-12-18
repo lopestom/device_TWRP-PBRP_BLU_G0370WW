@@ -3,7 +3,9 @@ Releasing first file Readme about device in the 24/11/2020.
 
 05/12/2020 - First test with TWRP: flashed and starting. Fixing some info.
 
-Download file TWRPv3.4.0-0: soon
+17/12/2020 recovery.img compiled with minimal TWRP. Testing............
+
+Download file TWRPv3.4.0_10-0: soon
 
 ## About Device
 ![BLU G90 Pro G0370WW](https://fdn2.gsmarena.com/vv/pics/blu/blu-g90-pro-3.jpg)
