@@ -1,7 +1,5 @@
-import /microtrust.rc
-import /vendor_init_as_system.rc
+import /init.recovery.microtrust.rc
 on fs
-#    export ANDROID_ROOT /system_root
     install_keyring
     setprop crypto.ready 1
 
@@ -9,90 +7,73 @@ on fs
     start hwservicemanager
     start servicemanager
 
-service teei_daemon /sbin/teei_daemon
+service capi-2-0 /vendor/bin/hw/vendor.microtrust.hardware.capi@2.0-service
     user root
     group root
     disabled
     seclabel u:r:recovery:s0
 
-service capi-2-0 /sbin/vendor.microtrust.hardware.capi@2.0-service
+service hidl_memory /system/bin/android.hidl.allocator@1.0-service
     user root
     group root
     disabled
     seclabel u:r:recovery:s0
 
-service hidl_memory /sbin/android.hidl.allocator@1.0-service
-    user root
-    group root
-    disabled
-    seclabel u:r:recovery:s0
-
-service hwservicemanager /sbin/hwservicemanager
+service hwservicemanager /system/bin/hwservicemanager
     user root
     group root readproc
     disabled
     onrestart setprop hwservicemanager.ready false
     seclabel u:r:recovery:s0
 
-service servicemanager /sbin/servicemanager
+service servicemanager /system/bin/servicemanager
     user root
     group root readproc
     disabled
     seclabel u:r:recovery:s0
 
-service keystore_auth /sbin/keystore_auth
+service keystore_auth /system/bin/keystore_auth
     oneshot
     user system
     group root
     disabled
     seclabel u:r:recovery:s0
 
-service keystore /sbin/keystore /tmp/misc/keystore
+service keystore /system/bin/keystore /tmp/misc/keystore
     user root
     group root drmrpc readproc
     disabled
     seclabel u:r:recovery:s0
 
-service gatekeeper-1-0 /sbin/android.hardware.gatekeeper@1.0-service
+service gatekeeper-1-0 /vendor/bin/hw/android.hardware.gatekeeper@1.0-service
     user root
     group root
     disabled
     seclabel u:r:recovery:s0
 
-service vendor.keymaster-4-0-beanpod /sbin/android.hardware.keymaster@4.0-service.beanpod
+service keymaster-4-0 /vendor/bin/hw/android.hardware.keymaster@4.0-service.beanpod
     user root
     group root drmrpc
     disabled
     seclabel u:r:recovery:s0
 
-service beanpod_check_keybox_service /sbin/bp_kmsetkey_ca -c
-    user root
-    group root drmrpc
-    disabled
-    seclabel u:r:recovery:s0
-
-service keymaster_attestation-1-1 /sbin/vendor.mediatek.hardware.keymaster_attestation@1.1-service
-    user root
-    group root drmrpc
-    disabled
-    seclabel u:r:recovery:s0
-
-service logging /sbin/logging.sh
+service logging /system/bin/logging.sh
     user root
     group root
     disabled
     seclabel u:r:recovery:s0
 
 on property:hwservicemanager.ready=true
-    start teei_daemon
-    start capi-2-0
-    start hidl_memory
+#    start teei_daemon
+#    start capi-2-0
+#    start hidl_memory
     start keymaster-4-0
     start gatekeeper-1-0
 
+
 on property:ro.crypto.state=unsupported
-    stop hidl_memory
-    stop capi-2-0
+#    stop hidl_memory
+#    stop capi-2-0
     stop teei_daemon
     stop keymaster-4-0
     stop gatekeeper-1-0
@@ -100,8 +81,8 @@ on property:ro.crypto.state=unsupported
     stop hwservicemanager
 
 on property:ro.crypto.state=unencrypted
-    stop hidl_memory
-    stop capi-2-0
+#    stop hidl_memory
+#    stop capi-2-0
     stop teei_daemon
     stop keymaster-4-0
     stop gatekeeper-1-0
@@ -112,21 +93,13 @@ on boot
     start logging
 
 on property:twrp.decrypt.done=true
-    stop hidl_memory
-    stop capi-2-0
+#    stop hidl_memory
+#    stop capi-2-0
     stop teei_daemon
     stop keymaster-4-0
     stop gatekeeper-1-0
     stop servicemanager
     stop hwservicemanager
-
-#on property:twrp.decrypt.done=true && property:twrp.all.users.decrypted=true
-#    stop mobicore
-#    stop hal_cryptoeng_oppo
-#    stop keymaster-4-0
-#    stop gatekeeper-1-0
-#    stop servicemanager
-#    stop hwservicemanager
 
 on boot
     # Enable Power modes and set the CPU Freq Sampling rates

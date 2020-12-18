@@ -1,7 +1,3 @@
-#
-# Copyright (C) 2020 The Android Open Source Project
-#
-
 LOCAL_PATH := $(call my-dir)
 
 ifeq ($(TARGET_DEVICE),G0370WW)
