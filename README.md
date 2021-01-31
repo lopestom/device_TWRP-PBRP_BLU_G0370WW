@@ -5,7 +5,7 @@ Releasing first file Readme about device in the 24/11/2020.
 
 17/12/2020 recovery.img compiled with minimal TWRP. Testing............
 
-Download file TWRPv3.4.0_10-0: soon
+Download file TWRPv3.5.0_10-0: https://github.com/lopestom/device_TWRP-PBRP_BLU_G0370WW/releases/tag/TWRP3.5.0_10_Decryption-Fastbootd
 
 ## About Device
 ![BLU G90 Pro G0370WW](https://fdn2.gsmarena.com/vv/pics/blu/blu-g90-pro-3.jpg)
